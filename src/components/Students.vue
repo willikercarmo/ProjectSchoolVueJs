@@ -10,16 +10,16 @@
       />
       <button class="btn btn-input1" @click="addStudent()">Add</button>
     </div>
-    <table border="1px">
+    <table>
       <thead>
         <th>Id</th>
         <th>Name</th>
         <th>Actions</th>
       </thead>
-      <tbody>
+      <tbody v-if="students.length">
         <tr v-for="(student, index) in students" :key="index">
           <td>{{ index + 1 }}</td>
-          <td>{{ student.name }}</td>
+          <td>{{ student.name }} {{ student.surname }}</td>
           <td>
             <button class="btn btn-danger1" @click="removeStudent(student)">
               Remove
@@ -27,6 +27,9 @@
           </td>
         </tr>
       </tbody>
+      <tfoot v-else>
+        Student not found!
+      </tfoot>
     </table>
   </div>
 </template>
@@ -40,15 +43,18 @@ export default {
       students: [
         {
           id: 1,
-          name: "Williker Carmo",
+          name: "Williker",
+          surname: "Carmo"
         },
         {
           id: 2,
-          name: "Terezinha Carvalho",
+          name: "Terezinha",
+          surname: "Carvalho"
         },
         {
           id: 3,
-          name: "Wanessa Camargo",
+          name: "Wanessa",
+          surname: "Camargo"
         },
       ],
     };
