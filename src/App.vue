@@ -4,16 +4,17 @@
     <div class="margin-main1">
       <!-- <Students /> -->
       <!-- <Professor /> -->
-      <About />
+      <!-- <About /> -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import Students from "./components/Students/Students.vue";
-import Nav from "./components/_Nav/Nav.vue";
 import Professor from './components/Professors/Professors.vue'
 import About from './components/About/About.vue'
+import Nav from "./components/_Nav/Nav.vue";
 
 export default {
   name: "App",
