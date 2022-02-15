@@ -32,6 +32,23 @@ html {
 #app {
 }
 
+.btn{
+  background-color: #fa4430;
+  border: 1px solid #000;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border-bottom: 3px solid black;
+}
+
+.btn:hover{
+  text-shadow: 1px 1px 1px black;
+  margin-top: 3px;
+  border-bottom: 1px solid black;
+}
+
 table {
   margin: 0px;
   padding: 0px;
