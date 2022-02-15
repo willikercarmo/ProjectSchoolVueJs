@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title text=Student />
+    <Title text="Student" />
     <div>
       <input
         type="text"
@@ -18,7 +18,7 @@
       </thead>
       <tbody v-if="students.length">
         <tr v-for="(student, index) in students" :key="index">
-          <td>{{ index + 1 }}</td>
+          <td>{{ student.id }}</td>
           <td>{{ student.name }} {{ student.surname }}</td>
           <td>
             <button class="btn btn-danger1" @click="removeStudent(student)">
@@ -45,41 +45,43 @@ export default {
     return {
       title: "Student",
       name: "",
-      students: [
-        {
-          id: 1,
-          name: "Williker",
-          surname: "Carmo",
-        },
-        {
-          id: 2,
-          name: "Terezinha",
-          surname: "Carvalho",
-        },
-        {
-          id: 3,
-          name: "Wanessa",
-          surname: "Camargo",
-        },
-      ],
+      students: [],
     };
+  },
+  created() {
+    this.$http
+      .get("http://localhost:3000/students")
+      .then((response) => response.json())
+      .then((students) => (this.students = students));
   },
   props: {},
   methods: {
     addStudent() {
       let _student = {
         name: this.name,
+        surname: "",
       };
-      this.students.push(_student);
+
+      this.$http
+        .post("http://localhost:3000/students", _student)
+        .then((response) => response.json())
+        .then((student) => {
+          this.students.push(student);
+          this.name = "";
+        });
+
       this.students.forEach((student) => {
         console.log(student);
         console.log("---------------");
       });
-      this.name = "";
     },
     removeStudent(student) {
-      let _index = this.students.indexOf(student);
-      this.students.splice(_index, 1);
+      this.$http
+        .delete(`http://localhost:3000/students/${student.id}`)
+        .then(() => {
+          let _index = this.students.indexOf(student);
+          this.students.splice(_index, 1);
+        });
     },
   },
 };
