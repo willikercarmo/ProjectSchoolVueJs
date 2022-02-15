@@ -2,7 +2,9 @@
   <div id="app">
     <Nav />
     <div class="margin-main1">
-      <Students />
+      <!-- <Students /> -->
+      <!-- <Professor /> -->
+      <About />
     </div>
   </div>
 </template>
@@ -10,12 +12,17 @@
 <script>
 import Students from "./components/Students/Students.vue";
 import Nav from "./components/_Nav/Nav.vue";
+import Professor from './components/Professors/Professors.vue'
+import About from './components/About/About.vue'
 
 export default {
   name: "App",
   components: {
+     /* eslint-disable vue/no-unused-components */
     Students,
     Nav,
+    Professor,
+    About,
   },
 };
 </script>
