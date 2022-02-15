@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <Students />
+    <Nav />
+    <div class="margin-main1">
+      <Students />
+    </div>
   </div>
 </template>
 
 <script>
 import Students from "./components/Students/Students.vue";
+import Nav from "./components/_Nav/Nav.vue";
 
 export default {
   name: "App",
   components: {
     Students,
+    Nav,
   },
 };
 </script>
@@ -29,14 +34,21 @@ html {
   margin: 0;
   height: 100%;
 }
-#app {
+
+.margin-main1 {
+  width: 50%;
+  margin: auto;
 }
 
-.btn-danger1{
+#app {
+  width: 100%;
+}
+
+.btn-danger1 {
   background-color: #fa4430;
 }
 
-.btn{
+.btn {
   border: 1px solid #000;
   padding: 10px 20px;
   cursor: pointer;
@@ -46,7 +58,7 @@ html {
   border-bottom: 3px solid black;
 }
 
-.btn:hover{
+.btn:hover {
   text-shadow: 1px 1px 1px black;
   margin-top: 3px;
   border-bottom: 1px solid black;
