@@ -19,7 +19,7 @@
           <td>{{ index + 1 }}</td>
           <td>{{ student.name }}</td>
           <td>
-            <button class="btn" @click="Remove()">Remove</button>
+            <button class="btn" @click="removeStudent(student)">Remove</button>
           </td>
         </tr>
       </tbody>
@@ -60,7 +60,11 @@ export default {
         console.log(student);
         console.log("---------------");
       });
-      this.name = '';
+      this.name = "";
+    },
+    removeStudent(student) {
+      let _index = this.students.indexOf(student);
+      this.students.splice(_index, 1);
     },
   },
 };
