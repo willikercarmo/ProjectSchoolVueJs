@@ -1,7 +1,13 @@
 <template>
   <div>
-    <Title :text="professorId != undefined ? 'Professor: '+ professor.name : 'All Students'" />
-    <div v-if="professorId != undefined ">
+    <Title
+      :text="
+        professorId != undefined
+          ? 'Professor: ' + professor.name
+          : 'All Students'
+      "
+    />
+    <div v-if="professorId != undefined">
       <input
         type="text"
         placeholder="Student's name"
@@ -18,8 +24,9 @@
       </thead>
       <tbody v-if="students.length">
         <tr v-for="(student, index) in students" :key="index">
-          <td>{{ student.id }}</td>
-          <td>{{ student.name }} {{ student.surname }}</td>
+          <td class="colPequeno">{{ student.id }}</td>
+          <router-link :to="`/student-details/${student.id}`" tag="td" style="cursor: pointer">
+            {{ student.name }} {{ student.surname }}</router-link>
           <td>
             <button class="btn btn-danger1" @click="removeStudent(student)">
               Remove
@@ -54,16 +61,15 @@ export default {
     if (this.professorId) {
       this.loadingProfessors();
       this.$http
-      .get("http://localhost:3000/students?professor.id=" + this.professorId)
-      .then((response) => response.json())
-      .then((students) => (this.students = students));
+        .get("http://localhost:3000/students?professor.id=" + this.professorId)
+        .then((response) => response.json())
+        .then((students) => (this.students = students));
     } else {
       this.$http
-      .get("http://localhost:3000/students")
-      .then((response) => response.json())
-      .then((students) => (this.students = students));
+        .get("http://localhost:3000/students")
+        .then((response) => response.json())
+        .then((students) => (this.students = students));
     }
-
   },
   props: {},
   methods: {
@@ -73,8 +79,8 @@ export default {
         surname: "",
         professor: {
           id: this.professor.id,
-          name: this.professor.name
-        }
+          name: this.professor.name,
+        },
       };
 
       this.$http
@@ -100,7 +106,7 @@ export default {
     },
     loadingProfessors() {
       this.$http
-        .get("http://localhost:3000/professors/"+this.professorId)
+        .get("http://localhost:3000/professors/" + this.professorId)
         .then((response) => response.json())
         .then((professor) => {
           this.professor = professor;
