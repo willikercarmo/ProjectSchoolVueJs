@@ -44,15 +44,24 @@ export default {
   data() {
     return {
       title: "Student",
+      professorId: this.$route.params.prof_id,
       name: "",
       students: [],
     };
   },
   created() {
-    this.$http
+    if (this.professorId) {
+      this.$http
+      .get("http://localhost:3000/students?professor.id=" + this.professorId)
+      .then((response) => response.json())
+      .then((students) => (this.students = students));
+    } else {
+      this.$http
       .get("http://localhost:3000/students")
       .then((response) => response.json())
       .then((students) => (this.students = students));
+    }
+
   },
   props: {},
   methods: {

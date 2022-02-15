@@ -2,7 +2,7 @@
   <div class="margin-top1">
     <nav class="margin-main1">
       <router-link to="/professors">Professors</router-link>
-      <router-link to="/students">Students</router-link>
+      <router-link to="/students-all">Students</router-link>
       <router-link to="/about">About</router-link>
     </nav>
   </div>

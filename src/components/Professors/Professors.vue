@@ -11,7 +11,11 @@
         <tr v-for="(professor, index) in professors" :key="index">
           <td>{{ professor.id }}</td>
 
-          <router-link to="/students" tag="td" style="cursor: pointer">
+          <router-link
+            v-bind:to="'/students/' + professor.id"
+            tag="td"
+            style="cursor: pointer"
+          >
             {{ professor.name }} {{ professor.surname }}
           </router-link>
 
@@ -56,7 +60,7 @@ export default {
           name: professor.name,
           countStudents: this.students.filter(
             (student) => student.professor.id == professor.id
-          ).length
+          ).length,
         };
         this.professors[index] = professor;
       });
