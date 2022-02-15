@@ -15,7 +15,7 @@
             {{ professor.name }} {{ professor.surname }}
           </router-link>
 
-          <td>3</td>
+          <td>{{ professor.countStudents }}</td>
         </tr>
       </tbody>
       <tfoot v-else>
@@ -35,15 +35,42 @@ export default {
   data() {
     return {
       professors: [],
+      students: [],
     };
   },
   created() {
     this.$http
-      .get("http://localhost:3000/professors")
+      .get("http://localhost:3000/students")
       .then((response) => response.json())
-      .then((professors) => (this.professors = professors));
+      .then((students) => {
+        this.students = students;
+        this.loadingProfessors();
+      });
   },
   props: {},
+  methods: {
+    countStudentsByProfessor() {
+      this.professors.forEach((professor, index) => {
+        professor = {
+          id: professor.id,
+          name: professor.name,
+          countStudents: this.students.filter(
+            (student) => student.professor.id == professor.id
+          ).length
+        };
+        this.professors[index] = professor;
+      });
+    },
+    loadingProfessors() {
+      this.$http
+        .get("http://localhost:3000/professors")
+        .then((response) => response.json())
+        .then((professor) => {
+          this.professors = professor;
+          this.countStudentsByProfessor();
+        });
+    },
+  },
 };
 </script>
 
