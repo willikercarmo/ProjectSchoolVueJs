@@ -1,13 +1,15 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <input
-      type="text"
-      placeholder="Student's name"
-      v-model="name"
-      v-on:keyup.enter="addStudent()"
-    />
-
+    <div>
+      <input
+        type="text"
+        placeholder="Student's name"
+        v-model="name"
+        v-on:keyup.enter="addStudent()"
+      />
+      <button class="btn btn-input1" @click="addStudent()">Add</button>
+    </div>
     <table border="1px">
       <thead>
         <th>Id</th>
@@ -19,7 +21,9 @@
           <td>{{ index + 1 }}</td>
           <td>{{ student.name }}</td>
           <td>
-            <button class="btn" @click="removeStudent(student)">Remove</button>
+            <button class="btn btn-danger1" @click="removeStudent(student)">
+              Remove
+            </button>
           </td>
         </tr>
       </tbody>
@@ -71,4 +75,29 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+input {
+  /* width: calc(100% - 150px); */
+  border: 0;
+  padding: 20px;
+  font-size: 1.3em;
+  color: #687f7f;
+  display: inline;
+}
+
+.btn-input1 {
+  width: 150px;
+  border: 0px;
+  padding: 20px;
+  font-size: 1.3em;
+  display: inline;
+  background-color: rgb(116, 115, 115);
+}
+
+.btn-input1:hover{
+  padding: 20px;
+  margin: 0px;
+  border: 0px;
+}
+
+</style>

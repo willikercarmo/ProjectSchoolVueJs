@@ -32,8 +32,11 @@ html {
 #app {
 }
 
-.btn{
+.btn-danger1{
   background-color: #fa4430;
+}
+
+.btn{
   border: 1px solid #000;
   padding: 10px 20px;
   cursor: pointer;
