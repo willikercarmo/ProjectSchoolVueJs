@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <Title text=Student />
     <div>
       <input
         type="text"
@@ -35,7 +35,12 @@
 </template>
 
 <script>
+import Title from "../_Shared/Title";
+
 export default {
+  components: {
+    Title,
+  },
   data() {
     return {
       title: "Student",
@@ -44,17 +49,17 @@ export default {
         {
           id: 1,
           name: "Williker",
-          surname: "Carmo"
+          surname: "Carmo",
         },
         {
           id: 2,
           name: "Terezinha",
-          surname: "Carvalho"
+          surname: "Carvalho",
         },
         {
           id: 3,
           name: "Wanessa",
-          surname: "Camargo"
+          surname: "Camargo",
         },
       ],
     };
@@ -100,10 +105,9 @@ input {
   background-color: rgb(116, 115, 115);
 }
 
-.btn-input1:hover{
+.btn-input1:hover {
   padding: 20px;
   margin: 0px;
   border: 0px;
 }
-
 </style>

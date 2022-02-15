@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Students from "./components/Students.vue";
+import Students from "./components/Students/Students.vue";
 
 export default {
   name: "App",
