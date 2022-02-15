@@ -1,8 +1,12 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <input type="text" placeholder="Student's name" v-model="name"
-    v-on:keyup.enter="addStudent()" />
+    <input
+      type="text"
+      placeholder="Student's name"
+      v-model="name"
+      v-on:keyup.enter="addStudent()"
+    />
 
     <table border="1px">
       <thead>
@@ -11,16 +15,9 @@
         <th>Actions</th>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Williker</td>
-          <td>
-            <button class="btn" @click="Remove()">Remove</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Terezinha</td>
+        <tr v-for="(student, index) in students" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ student.name }}</td>
           <td>
             <button class="btn" @click="Remove()">Remove</button>
           </td>
@@ -36,17 +33,34 @@ export default {
     return {
       title: "Student",
       name: "",
-      students: [],
+      students: [
+        {
+          id: 1,
+          name: "Williker Carmo",
+        },
+        {
+          id: 2,
+          name: "Terezinha Carvalho",
+        },
+        {
+          id: 3,
+          name: "Wanessa Camargo",
+        },
+      ],
     };
   },
   props: {},
   methods: {
     addStudent() {
-      this.students.push(this.name);
-      this.students.forEach(student => {
+      let _student = {
+        name: this.name,
+      };
+      this.students.push(_student);
+      this.students.forEach((student) => {
         console.log(student);
         console.log("---------------");
       });
+      this.name = '';
     },
   },
 };
